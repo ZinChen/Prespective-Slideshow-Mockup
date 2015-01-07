@@ -1,0 +1,74 @@
+<!-- Credits:
+    Mockup:
+        https://365webresources.com/48-android-windows-phone-mockup-templates/
+      ->
+        https://dribbble.com/shots/1865992-Lumia-1520-Mock-ups-FREE-PSD
+    Slider:
+        http://tympanus.net/codrops/2014/11/21/perspective-mockup-slideshow/
+    Idea:
+        http://franklinta.com/2014/09/08/computing-css-matrix3d-transforms/ -->
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <title>Test Mockup Slideshow</title>
+        <link rel="stylesheet" type="text/css" href="style/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+        <script src="js/modernizr.custom.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="wrap" class="wrap">
+            <div class="mockup">
+                <img class="mockup__img" src="img/1.jpg" />
+                <div id="mobile" class="mobile">
+                        <ul id="slideshow" class="slideshow">
+                            <li class="slideshow__item"><img src="img/1.png" /></li>
+                            <li class="slideshow__item"><img src="img/2.png" /></li>
+                            <li class="slideshow__item"><img src="img/3.png" /></li>
+                            <li class="slideshow__item"><img src="img/4.png" /></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <script src="js/classie.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            (function() {
+                new Slideshow( document.getElementById( 'slideshow' ) );
+
+                /* Mockup responsiveness */
+                var body = docElem = window.document.documentElement,
+                    wrap = document.getElementById( 'wrap' ),
+                    mockup = wrap.querySelector( '.mockup' ),
+                    mockupWidth = mockup.offsetWidth;
+
+                scaleMockup();
+
+                function scaleMockup() {
+                    var wrapWidth = wrap.offsetWidth,
+                        val = wrapWidth / mockupWidth;
+
+                    mockup.style.transform = 'scale3d(' + val + ', ' + val + ', 1)';
+                }
+
+                window.addEventListener( 'resize', resizeHandler );
+
+                function resizeHandler() {
+                    function delayed() {
+                        resize();
+                        resizeTimeout = null;
+                    }
+                    if ( typeof resizeTimeout != 'undefined' ) {
+                        clearTimeout( resizeTimeout );
+                    }
+                    resizeTimeout = setTimeout( delayed, 50 );
+                }
+
+                function resize() {
+                    scaleMockup();
+                }
+            })();
+        </script>
+    </body>
+</html>
